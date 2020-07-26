@@ -1,0 +1,35 @@
+class fetcher
+
+	def createConnection()
+
+	def getQuoteText()
+
+	def getQuoteImage()
+
+class Brain
+
+	def setupDir()
+
+	def fetchQuote()
+
+	def saveResults()
+
+class twiiterConnect()
+
+	def loadCred()
+
+	def buildConnection()
+
+	def makePost()
+
+class BotStats
+
+	def loadCred()
+
+	def getStats()
+
+	def processStats()
+
+	def saveStats()
+
+	def buildAnalysis()
