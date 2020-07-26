@@ -4,9 +4,22 @@ from bs4 import BeautifulSoup
 from random import randint
 
 
+""" Author : Akash Agnihotri <akashagni26@gmail.com>
+    Created Date : 25th July 2020
+    Overview : This class provides API to scrape Quote's website to fetch quotes.
+    Latest Change : Created
+"""
+
+
 class QuoteFetcher:
 
     def __init__(self, work_dir=os.curdir, scrape_link=None, topic="life"):
+        """
+        This class provides functionality to scrape the internet for quotes
+        :param work_dir: provide work directory, where all new quotes will be saved, and list of topics will be fetched.
+        :param scrape_link:  Base link from where to search the quotes,default is https://www.brainyquote.com
+        :param topic: Topic on which to search the quotes, default is life
+        """
         self.work_dir = work_dir
         self.url_list = []
         self.fetch_topic = topic
@@ -17,6 +30,10 @@ class QuoteFetcher:
 
 
     def createConnection(self):
+        """
+        Create as connection to the scrape link and fetches a list of quotes link related to mentioned topic.
+        :return: self
+        """
         url = f'{self.scrape_link}/topics/{self.fetch_topic}-quotes'
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -25,17 +42,35 @@ class QuoteFetcher:
         return self
 
     def url_count(self):
+        """
+        Returns count of URL's found in search
+        :return: int
+        """
         return len(self.url_list)
 
     def getRandomUrl(self):
+        """
+        returns a random URL link from the scraped page
+        :return: string
+        """
         q_idx = randint(0, len(self.url_list)-1)
         q_url = self.scrape_link + self.url_list[q_idx]
         return q_url
 
     def setTopic(self, topic):
+        """
+        Set the topic parameter to a new value
+        :param topic: Set to any available topic
+        :return: None
+        """
         self.fetch_topic = topic
 
     def getQuoteText(self, url):
+        """
+        Fetches the Text from the Quote of the link provided.
+        :param url: Url from which to get the quote
+        :return: String
+        """
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
         quote = soup.find('div', {'class': 'quoteContent'}).text
@@ -45,6 +80,11 @@ class QuoteFetcher:
         return result
 
     def getQuoteImage(self, url):
+        """
+        Fetches the Image from the quote
+        :param url: url from which t fetch the quote
+        :return: String
+        """
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
         content = soup.find('div', {'class': 'quoteContent'})
@@ -60,6 +100,10 @@ class QuoteFetcher:
         return full_file_path
 
     def main(self):
+        """
+        For Testing the class
+        :return: None
+        """
         topic_list = open(os.path.join(self.work_dir, 'data', 'topics.txt')).read().split(',')
         topic = topic_list[randint(0, len(topic_list))]
         self.fetch_topic = topic
