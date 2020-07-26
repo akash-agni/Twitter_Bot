@@ -34,7 +34,7 @@ class twiiterConnect:
 
     def tweetIt(self):
         if self.tweet is not None:
-            tweet = f"{self.tweet.text}\n-{self.tweet.author}"
+            tweet = f"{self.tweet.text}\n-{self.tweet.author}\n#Quotes #{self.tweet.topic}"
             self.api.update_status(status=tweet)
 
     def main(self):
