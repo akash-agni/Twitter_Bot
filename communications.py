@@ -4,7 +4,7 @@ import tweepy
 from BotBrain import BotBrain
 
 
-class Communications:
+class twiiterConnect:
 
     def __init__(self, cred_file):
         self.cred_file = cred_file
@@ -45,6 +45,6 @@ class Communications:
 
 
 file = os.path.join(os.curdir, 'data', 'Twitter_Credential.json')
-comm = Communications(file)
+comm = twiiterConnect(file)
 comm.main()
 
