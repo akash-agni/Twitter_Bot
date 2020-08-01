@@ -9,7 +9,8 @@ class twiiterConnect:
     def __init__(self, cred_file):
         self.cred_file = cred_file
         self.api = None
-        self.tweet = None
+        self.quote_tweet = None
+        self.joke_tweet = None
 
     def loadCredentials(self):
         with open(self.cred_file, 'r') as file:
@@ -30,18 +31,26 @@ class twiiterConnect:
 
     def getPost(self):
         bb = BotBrain()
-        self.tweet = bb.fetchQuote()
+        self.quote_tweet = bb.fetchQuote()
+        self.joke_tweet = bb.fetchJoke()
+
 
     def tweetIt(self):
-        if self.tweet is not None:
-            tweet = f"{self.tweet.text}\n-{self.tweet.author}\n#Quotes #{self.tweet.topic}"
-            self.api.update_status(status=tweet)
+        if self.quote_tweet is not None:
+            quote_tweet = f"{self.quote_tweet.text}\n-{self.quote_tweet.author}\n#Quotes #{self.quote_tweet.topic}"
+            self.api.update_status(status=quote_tweet)
+
+    def tweetJoke(self):
+        if self.joke_tweet is not None:
+            joke_tweet = f"{self.joke_tweet}"
+            self.api.update_status(status=joke_tweet)
 
     def main(self):
-        credentials = self.loadCredentials()
-        self.authenticate(credentials)
+        #credentials = self.loadCredentials()
+        #self.authenticate(credentials)
         self.getPost()
-        self.tweetIt()
+        #self.tweetIt()
+        self.tweetJoke()
 
 
 file = os.path.join(os.curdir, 'data', 'Twitter_Credential.json')
