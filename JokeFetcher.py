@@ -35,7 +35,7 @@ class JokeFetcher:
         Create as connection to the scrape link and fetches html link related to mentioned topic of any page.
         :return: self
         """
-        random_page = randint(1,9)
+        random_page = randint(1,3)
         url = f'{self.scrape_link}/{self.fetch_topic}-jokes/page/{random_page}'
         print(url)
         page = requests.get(url)
