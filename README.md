@@ -10,5 +10,5 @@ Features Added
 - A working prototype is implemented
 - Added Lower level API for Jokes
 
-Upcoming Future
+Upcoming Features
 - Add lower level API's for Fun Facts
