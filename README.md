@@ -8,6 +8,7 @@ Features Added
 - Basic Oobject Oriented Structure is implemented
 - API's are defined for reusability as the product evolves
 - A working prototype is implemented
+- Added Lower level API for Jokes
 
 Upcoming Future
-- Add lower level API's for Jokes
+- Add lower level API's for Fun Facts
